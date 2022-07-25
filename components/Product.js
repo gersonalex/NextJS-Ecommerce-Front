@@ -1,3 +1,4 @@
+import { ProductStyle } from "../styles/ProductStyle";
 
 export default function Product({product}) {
 
@@ -6,12 +7,12 @@ export default function Product({product}) {
     // console.log(product)
 
     return (
-        <div>
+        <ProductStyle>
             <div>
                 <img src={image.data.attributes.formats.small.url} alt="" />
             </div>
             <h2>{title}</h2>
             <h3>{price}</h3>
-        </div>
+        </ProductStyle>
     )
 }

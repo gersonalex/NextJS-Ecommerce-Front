@@ -2,6 +2,7 @@ import Head from "next/head";
 import { PRODUCT_QUERY } from "../lib/query";
 import { useQuery } from "urql";
 import Product from "../components/Product";
+import { Gallery } from "../styles/Gallery";
 
 export default function Home() {
 
@@ -26,10 +27,12 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1>Hello from NextJS</h1>
-        {products.map(product => 
-          <Product key={product.attributes.slug} product={product}/>
-        )}
+        <h1>NextJS</h1>
+        <Gallery>
+          {products.map(product => 
+            <Product key={product.attributes.slug} product={product}/>
+          )}
+        </Gallery>
       </main>
     </div>
   );
