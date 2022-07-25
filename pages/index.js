@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { PRODUCT_QUERY } from "../lib/query";
 import { useQuery } from "urql";
+import Product from "../components/Product";
 
 export default function Home() {
 
@@ -12,7 +13,9 @@ export default function Home() {
   if (fetching) return <p>Loading...</p>
   if (error) return <p>Error {error.message}</p>
 
-  console.log(results)
+  const products = data.products.data; 
+
+  // console.log(products)
 
   return (
     <div>
@@ -24,6 +27,9 @@ export default function Home() {
 
       <main>
         <h1>Hello from NextJS</h1>
+        {products.map(product => 
+          <Product key={product.attributes.slug} product={product}/>
+        )}
       </main>
     </div>
   );
