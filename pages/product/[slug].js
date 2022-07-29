@@ -12,7 +12,7 @@ import { useStateContext } from "../../lib/context";
 
 export default function ProductDetail() {
   //Use State
-  const { qty, increaseQty, decreaseQty } = useStateContext();
+  const { qty, increaseQty, decreaseQty, onAdd } = useStateContext();
 
   //Fetch Slug
   const { query } = useRouter();
@@ -48,7 +48,9 @@ export default function ProductDetail() {
             <AiFillPlusCircle onClick={increaseQty} />
           </button>
         </Quantity>
-        <Buy>Add to cart</Buy>
+        <Buy onClick={onAdd(data.products.data[0].attributes, qty)}>
+          Add to cart
+        </Buy>
       </ProductInfo>
     </ProductDetals>
   );
