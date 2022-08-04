@@ -5,11 +5,11 @@ import { FaShoppingCart } from 'react-icons/fa'
 
 export default function Cart() {
 
-    const { cartItems } = useStateContext()
+    const { cartItems, setShowCart } = useStateContext()
 
     return (
-        <CartWrapper>
-            <CartStyle>
+        <CartWrapper onClick={() => setShowCart(false)}>
+            <CartStyle onClick={(e) => e.stopPropagation()}>
                 { cartItems.length < 1 && (
                     <EmptyStyle>
                         <h1>You have more shopping to do!</h1>
@@ -18,7 +18,6 @@ export default function Cart() {
                 )}
                 { cartItems.length >= 1 && (
                     cartItems.map(item => {
-                        console.log(item.image.data.attributes.formats)
                         return (
                             <Card>
                                 <img src={item.image.data.attributes.formats.thumbnail.url} alt={item.title} />
