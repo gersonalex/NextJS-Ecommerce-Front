@@ -9,6 +9,7 @@ import {
 } from "../../styles/ProductDetails";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { useStateContext } from "../../lib/context";
+import { motion } from "framer-motion";
 
 export default function ProductDetail() {
   //Use State
