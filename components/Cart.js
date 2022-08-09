@@ -3,10 +3,11 @@ import { useStateContext } from "../lib/context"
 import { CartWrapper, CartStyle, Card, CardInfo, EmptyStyle } from "../styles/CartStyles"
 import { Quantity } from "../styles/ProductDetails"
 import { FaShoppingCart } from 'react-icons/fa'
+import { Checkout } from "../styles/CartStyles"
 
 export default function Cart() {
 
-    const { cartItems, setShowCart, onAdd, onRemove } = useStateContext()
+    const { cartItems, setShowCart, onAdd, onRemove, totalPrice } = useStateContext()
 
     return (
         <CartWrapper onClick={() => setShowCart(false)}>
@@ -24,7 +25,7 @@ export default function Cart() {
                                 <img src={item.image.data.attributes.formats.thumbnail.url} alt={item.title} />
                                 <CardInfo>
                                     <h3>{item.title}</h3>
-                                    <h3>{item.price}</h3>
+                                    <h3>{item.price}$</h3>
                                     <Quantity>
                                         <span>Quantity</span>
                                         <button onClick={() => onRemove(item)}><AiFillMinusCircle /></button>
@@ -36,6 +37,12 @@ export default function Cart() {
                         )
                     })
                 ) }
+                {cartItems.length >= 1  && (
+                    <Checkout>
+                        <h3>Subtotal: {totalPrice}$</h3>
+                        <button>Purchase</button>
+                    </Checkout>
+                )}
             </CartStyle>
         </CartWrapper>
     )

@@ -5,13 +5,14 @@ import Cart from "./Cart";
 import { useStateContext } from "../lib/context";
 
 export default function Nav() {
-  const { showCart, setShowCart } = useStateContext();
+  const { showCart, setShowCart, totalQuantity } = useStateContext();
 
   return (
     <NavStyles>
       <Link href={"/"}>Styled.</Link>
       <NavItems>
         <div onClick={() => setShowCart(true)}>
+          {totalQuantity > 0 && <span>{totalQuantity}</span>}
           <FiShoppingBag />
           <h3>Cart</h3>
         </div>
