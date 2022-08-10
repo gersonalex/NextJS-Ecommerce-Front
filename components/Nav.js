@@ -4,6 +4,7 @@ import { NavStyles, NavItems } from "../styles/NavStyles";
 import Cart from "./Cart";
 import { useStateContext } from "../lib/context";
 import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Nav() {
   const { showCart, setShowCart, totalQuantity } = useStateContext();
@@ -13,7 +14,11 @@ export default function Nav() {
       <Link href={"/"}>Styled.</Link>
       <NavItems>
         <div onClick={() => setShowCart(true)}>
-          {totalQuantity > 0 && <span>{totalQuantity}</span>}
+          {totalQuantity > 0 && (
+            <motion.span animate={{ scale: 1 }} initial={{ scale: 0 }}>
+              {totalQuantity}
+            </motion.span>
+          )}
           <FiShoppingBag />
           <h3>Cart</h3>
         </div>
